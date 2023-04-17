@@ -7,11 +7,16 @@ import {
   TouchableNativeFeedback,
   Image,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import { CheckBox } from "@rneui/themed";
 
-const Login = () => {
+
+
+const Login = ({ navigation }) => {
   const [checked, setChecked] = useState(false);
+  
+
   return (
     <ImageBackground source={require('test-app/src/assets/backgroundLogin.png')}>
       <View style={{ width: "100%", height: "100%" }}>
@@ -21,7 +26,8 @@ const Login = () => {
               source={require("test-app/src/assets/patitasLogo.png")}
               style={styles.logo}
             />
-          </View>
+          </View>  
+          
 
           <Text
             style={{
@@ -103,13 +109,18 @@ const Login = () => {
           </View>
 
           <View style={{ alignItems: "center" }}>
-            <TouchableNativeFeedback>
+            <TouchableOpacity 
+              style={{ width: "100%", justifyContent: 'center', alignItems: 'center' }}
+              onPress={ () => {
+                navigation.navigate('Home')
+              }}
+            >
               <View style={[styles.boton_login, { marginBottom: 20 }]}>
                 <Text style={{ color: "white", fontWeight: "600" }}>
                   INGRESAR
                 </Text>
               </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
           </View>
           <View style={{ alignItems: "center" }}>
             <TouchableNativeFeedback>
