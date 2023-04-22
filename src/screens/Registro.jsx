@@ -1,28 +1,36 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableNativeFeedback,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from "react-native";
-import { CheckBox } from "@rneui/themed";
+import { CheckBox } from '@rneui/themed';
+import React from 'react'
+import { useState } from 'react';
+import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
-import { signInWithEmailAndPassword, getAuth } from 'firebase/auth'
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { initializeApp } from 'firebase/app'
 import { firebaseConfig } from '../../firebase-config';
 
-const Login = ({ navigation }) => {
+function Registro ({ navigation }) {
+
   const [checked, setChecked] = useState(false);
-  
+
   const [email, setEmail] = useState('')
   const [passwd, setPasswd] = useState('')
 
   const app = initializeApp(firebaseConfig)
   const auth = getAuth(app)
+
+
+  const handleCreateAccount = () => {
+    createUserWithEmailAndPassword(auth, email, passwd)
+      .then((userCredential) => {
+        console.log('usuario creado')
+        const user = userCredential.user
+        console.log(user)
+        handleSignIn()
+        
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, passwd)
@@ -47,9 +55,7 @@ const Login = ({ navigation }) => {
               source={require("test-app/src/assets/patitasLogo.png")}
               style={styles.logo}
             />
-          </View>  
-          
-
+          </View>
           <Text
             style={{
               fontSize: 30,
@@ -59,9 +65,8 @@ const Login = ({ navigation }) => {
               marginBottom: 5,
             }}
           >
-            INICIAR SESIÓN
+            REGISTRO
           </Text>
-
           <View>
             <Text style={styles.label}>Email</Text>
             <View style={styles.input_container}>
@@ -75,6 +80,7 @@ const Login = ({ navigation }) => {
               />
             </View>
           </View>
+
           <View>
             <Text style={styles.label}>Contraseña</Text>
             <View style={styles.input_container_psw}>
@@ -121,94 +127,42 @@ const Login = ({ navigation }) => {
                   padding: 0,
                 }}
               />
-              <TouchableOpacity>
-                <View>
-                  <Text style={{ color: "#3e367f", fontWeight: "800" }}>
-                    OLVIDASTE TU CONTRASEÑA?
-                  </Text>
-                </View>
-              </TouchableOpacity>
             </View>
           </View>
 
           <View style={{ alignItems: "center" }}>
             <TouchableOpacity 
               style={{ width: "100%", justifyContent: 'center', alignItems: 'center' }}
-              onPress={handleSignIn}
+              onPress={handleCreateAccount}
             >
               <View style={[styles.boton_login, { marginBottom: 20 }]}>
                 <Text style={{ color: "white", fontWeight: "600" }}>
-                  INGRESAR
+                  REGISTRAR
                 </Text>
               </View>
             </TouchableOpacity>
           </View>
+
           <View style={{ alignItems: "center" }}>
             <TouchableOpacity
               style={{ width: "100%", justifyContent: 'center', alignItems: 'center' }} 
               onPress={ () => {
-                navigation.navigate('Registro')
+                navigation.navigate('Login')
               }}
             >
               <View style={[styles.boton_registro, { marginBottom: 20 }]}>
                 <Text style={{ color: "#3e367f", fontWeight: "600" }}>
-                  REGISTRARSE
+                  CANCELAR
                 </Text>
               </View>
             </TouchableOpacity>
           </View>
 
-          <View
-            style={{
-              flexDirection: "row",
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                borderBottomWidth: 1,
-                width: "30%",
-                marginRight: 50,
-                borderBottomColor: "#3e367f",
-              }}
-            />
-            <Text style={{ color: "#3e367f", fontSize: 20, fontWeight: "400" }}>
-              o
-            </Text>
-            <View
-              style={{
-                borderBottomWidth: 1,
-                width: "30%",
-                marginLeft: 50,
-                borderBottomColor: "#3e367f",
-              }}
-            />
-          </View>
-
-          <View style={{ alignItems: "center" }}>
-            <TouchableNativeFeedback>
-              <View style={styles.boton_google}>
-                <Image
-                  source={require("test-app/src/assets/pngwing.com.png")}
-                  style={styles.google_logo}
-                />
-                <Text style={{ color: "#3e367f", fontWeight: "600" }}>
-                  Continuar con{" "}
-                </Text>
-                <Text style={{ fontWeight: "800", color: "#3e367f" }}>
-                  Google
-                </Text>
-              </View>
-            </TouchableNativeFeedback>
-          </View>
         </View>
       </View>
     </ImageBackground>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   input: {
@@ -282,4 +236,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+
+export default Registro;
