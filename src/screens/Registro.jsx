@@ -18,13 +18,13 @@ function Registro ({ navigation }) {
   const auth = getAuth(app)
 
 
-  const handleCreateAccount = () => {
+  const createAccount = () => {
     createUserWithEmailAndPassword(auth, email, passwd)
       .then((userCredential) => {
         console.log('usuario creado')
         const user = userCredential.user
         console.log(user)
-        handleSignIn()
+        signIn()
         
       })
       .catch(err => {
@@ -32,7 +32,7 @@ function Registro ({ navigation }) {
       })
   }
 
-  const handleSignIn = () => {
+  const signIn = () => {
     signInWithEmailAndPassword(auth, email, passwd)
       .then((userCredential) => {
         console.log('Signed in')
@@ -133,7 +133,7 @@ function Registro ({ navigation }) {
           <View style={{ alignItems: "center" }}>
             <TouchableOpacity 
               style={{ width: "100%", justifyContent: 'center', alignItems: 'center' }}
-              onPress={handleCreateAccount}
+              onPress={createAccount}
             >
               <View style={[styles.boton_login, { marginBottom: 20 }]}>
                 <Text style={{ color: "white", fontWeight: "600" }}>

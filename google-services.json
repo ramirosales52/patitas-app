@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "586288011808",
+    "project_id": "patitasauth",
+    "storage_bucket": "patitasauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586288011808:android:1bf0a08b346b58e65ffa45",
+        "android_client_info": {
+          "package_name": "com.rxma.testapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586288011808-j9gc6j6fjv7kfj0kpb99r4c7k3n7193r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rxma.testapp",
+            "certificate_hash": "3e4a301b876e8b060f3833f8526b63586d7c8cdd"
+          }
+        },
+        {
+          "client_id": "586288011808-rklovvq6eoprv0dmc3tt654d47i2ldhh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rxma.testapp",
+            "certificate_hash": "75717373854dbbe9c2355845a0999a9b8cbf902b"
+          }
+        },
+        {
+          "client_id": "586288011808-jd34s9fu0vikiau7d5jrsd1msif9cc5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7pIoj5b5QusK_1CZydB-AegSAnax8aCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586288011808-jd34s9fu0vikiau7d5jrsd1msif9cc5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
